@@ -47,7 +47,7 @@ function setList (list){
         str = str.charAt(0).toUpperCase() + str.slice(1);
         var valIten = 'R$ '+ parseFloat(val.valor).toFixed(2);
         
-        table += '<tr><td>'+str+'</td><td>'+val.quant+'</td><td>'+valIten+'</td><td>'+val.action+'</td></tr>';
+        table += '<tr><td>'+str+'</td><td>'+val.quant+'</td><td>'+valIten+'</td><td><button class="btn btn-default" onclick="setUpDate('+index+')">Edit</button></td></tr>';
     }
     
     table += '</tbody>';
@@ -62,12 +62,47 @@ function addDataList(){
             desc: document.getElementById('desc').value,
             quant: document.getElementById('quant').value,
             valor: document.getElementById('valor').value,
-            action: 'Edit | Delete'
+            action: '<button onclick="setUpDate()">Edit</button>'
         }
-    )
-    
+    )    
     setList(list)
 }
+
+function setUpDate (id){
+    var obj = list[id];
+    document.getElementById('desc').value = obj.desc;
+    document.getElementById('quant').value = obj.quant;
+    document.getElementById('valor').value = obj.valor
+    document.getElementById('btnUpDate').style.display = 'inline-block';
+    document.getElementById('btnAdd').style.display = 'none';
+    
+    document.getElementById('inputIdUpdate').innerHTML = '<input type="hidden" id="idUpDate" value="'+id+'">';
+}
+
+function resetForm (){
+    document.getElementById('desc').value = '';
+    document.getElementById('quant').value = '';
+    document.getElementById('valor').value = ''
+    document.getElementById('btnUpDate').style.display = 'none';
+    document.getElementById('btnAdd').style.display = 'inline-block';
+    document.getElementById('inputIdUpdate').innerHTML = ''
+}
+
+function upDateData(){
+    var id = document.getElementById('idUpDate').value;
+    var desc = document.getElementById('desc').value;
+    var quant = document.getElementById('quant').value;
+    var valor = document.getElementById('valor').value;
+    
+    list[id] = {
+        'desc': desc,
+        'quant': quant,
+        'valor': valor
+    }
+    resetForm();
+    setList(list)
+}
+
 
 setList(list)
 

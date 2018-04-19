@@ -33,10 +33,24 @@
                     <div class="form-group">
                         <input type="number" class="form-control" id="quant" placeholder="Quantidade">
                     </div>
+                    <!--
+                    <div class="form-group">
+                        <input list="unid" name="unid" class="form-control" placeholder="Unid. Medida">
+                        <datalist id="unid">
+                            <option value="Und">Und</option>
+                            <option value="Kg">Kg</option>
+                            <option value="Lt">Lt</option>
+                        </datalist>
+                    </div>-->
                     <div class="form-group">
                         <input type="number" class="form-control" id="valor" placeholder="Valor">
                     </div>
-                    <button class="btn btn-default" id='btn-add' onclick="addDataList()" >Adicionar</button>
+                    <span id="btnUpDate">
+                        <span id="inputIdUpdate"></span>
+                        <button class="btn btn-default" id='btn-add' onclick="upDateData()" >Save</button>    
+                        <button class="btn btn-default" id='btn-add' onclick="resetForm()" >Cancel</button>    
+                    </span>
+                    <button id="btnAdd" class="btn btn-default" id='btn-add' onclick="addDataList()" >Add</button>
                 </div>
                 
                 <table id='listTable' class="table table-hover">

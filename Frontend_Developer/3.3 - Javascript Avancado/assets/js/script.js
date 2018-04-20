@@ -47,7 +47,7 @@ function setList (list){
         str = str.charAt(0).toUpperCase() + str.slice(1);
         var valIten = 'R$ '+ parseFloat(val.valor).toFixed(2);
         
-        table += '<tr><td>'+str+'</td><td>'+val.quant+'</td><td>'+valIten+'</td><td><button class="btn btn-default" onclick="setUpDate('+index+')">Edit</button></td></tr>';
+        table += '<tr><td>'+str+'</td><td>'+val.quant+'</td><td>'+valIten+'</td><td><button class="btn btn-default" onclick="setUpDate('+index+')">Edit</button> <button class="btn btn-default" onclick="deleteUpDate('+index+')">Delete</button></td></tr></td></tr>';
     }
     
     table += '</tbody>';
@@ -68,6 +68,8 @@ function addDataList(){
     setList(list)
 }
 
+/* EDITAR CAMPO DA TABELA */
+
 function setUpDate (id){
     var obj = list[id];
     document.getElementById('desc').value = obj.desc;
@@ -79,6 +81,9 @@ function setUpDate (id){
     document.getElementById('inputIdUpdate').innerHTML = '<input type="hidden" id="idUpDate" value="'+id+'">';
 }
 
+
+/* CANCELAR EDIÇÃO DE CAMPO */
+
 function resetForm (){
     document.getElementById('desc').value = '';
     document.getElementById('quant').value = '';
@@ -87,6 +92,9 @@ function resetForm (){
     document.getElementById('btnAdd').style.display = 'inline-block';
     document.getElementById('inputIdUpdate').innerHTML = ''
 }
+
+
+/* SALVANDO ALTERAÇÕES DA TABELA */
 
 function upDateData(){
     var id = document.getElementById('idUpDate').value;
@@ -101,6 +109,23 @@ function upDateData(){
     }
     resetForm();
     setList(list)
+}
+
+/* DELETANDO DADOS DA LISTA */
+
+function deleteUpDate(id){
+    if(confirm('Deseja deletar o item?')){
+        if(id === list.length - 1){
+            list.pop();
+        }else if(id === 0){
+            list.shift();
+        }else{
+            var arrAuxIni = list.slice(0, id);
+            var arrAuxEnd = list.slice(id + 1);
+            list = arrAuxIni.concat(arrAuxEnd)
+        }
+        setList(list)
+    }
 }
 
 

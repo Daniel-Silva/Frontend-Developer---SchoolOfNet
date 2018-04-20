@@ -50,12 +50,23 @@
                         <button class="btn btn-default" id='btn-add' onclick="upDateData()" >Save</button>    
                         <button class="btn btn-default" id='btn-add' onclick="resetForm()" >Cancel</button>    
                     </span>
-                    <button id="btnAdd" class="btn btn-default" id='btn-add' onclick="addDataList()" >Add</button>
+                    <span id="btnAdd">
+                        <button class="btn btn-default" id='btn-add' onclick="addDataList()" >Add</button>
+                        <button class="btn btn-default" id='btn-add' onclick="resetForm()" >Reset</button>
+                        <button class="btn btn-default" id='btn-add' onclick="deleteList()" >Delete List</button>
+                    </span>
+                    
                 </div>
                 
                 <table id='listTable' class="table table-hover">
                    
                 </table>
+                
+                <nav class="navbar navbar-default navbar-fixed-bottom">
+                    <div class="container">
+                        <h4 class="text-center text-success">Total: <span id="totalValue">R$ 0,00</span></h4>
+                    </div>
+                </nav>
                 
             </section>
         </main>

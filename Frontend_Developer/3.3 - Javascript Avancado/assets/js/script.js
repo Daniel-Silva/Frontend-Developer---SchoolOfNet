@@ -28,7 +28,7 @@ function getTotal (list){
     for (var key in list){
         total += list[key].valor * list[key].quant;
     }
-    
+    document.getElementById('totalValue').innerHTML = 'R$ '+total.toFixed(2)
     return total;
 }
 
@@ -52,6 +52,8 @@ function setList (list){
     
     table += '</tbody>';
     document.getElementById('listTable').innerHTML = table;
+    getTotal (list);
+    saveListStorage (list)
 }
 
 /* ADD DADOS DOS INPUTs NA LIST */
@@ -128,8 +130,32 @@ function deleteUpDate(id){
     }
 }
 
+/* DELETANDO LISTA */
 
-setList(list)
+function deleteList(){
+    if(confirm('Deseja deletar a lista?')){
+        list = [];
+    }
+    setList(list)
+}
+
+/* SALVANDO DADOS NO LOCALSTORAGE */
+
+function saveListStorage (list){
+    var jsonStr = JSON.stringify(list);
+    localStorage.setItem('list', jsonStr);
+}
+
+function initListStorage(){
+    var testList = localStorage.getItem('list');
+    if(testList){
+        list = JSON.parse(testList);
+    }
+    setList(list)
+}
+
+initListStorage();
+
 
 
 
